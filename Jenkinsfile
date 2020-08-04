@@ -5,19 +5,22 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                sh 'chmod +x gradlew'
-                sh './gradlew clean build -DskipTests=true'
-                archiveArtifacts artifacts: 'build/libs/**/*.jar'
+                echo "... build step ..."
+                // sh 'chmod +x gradlew'
+                // sh './gradlew clean build -DskipTests=true'
+                // archiveArtifacts artifacts: 'build/libs/**/*.jar'
             }            
         }
         stage('test'){
             steps{
-                sh './gradlew test'
+                //sh './gradlew test'
+                echo "... test step ..."
             }
             post {
                 always {
-                    junit 'build/test-results/**/*.xml'
-                    archiveArtifacts artifacts: 'build/reports/jacoco/**/*.xml'
+                    //junit 'build/test-results/**/*.xml'
+                    //archiveArtifacts artifacts: 'build/reports/jacoco/**/*.xml'
+                    echo "...POST test step ..."
                 }
             }            
         }
@@ -29,7 +32,7 @@ pipeline{
             steps{
                 script{
                     timeout(time: 5, unit: 'SECONDS'){
-                        input message: 'Apruebas el despliegue', submitter: 'admin'
+                        input message: 'APPROVE OR NOT', submitter: 'admin'
                     }
                 }
             }
@@ -39,7 +42,7 @@ pipeline{
                 branch 'master'
             }
             steps{
-                echo "Pendiente de implementación"
+                echo "Pending Implementation"
             }
         }
     }
