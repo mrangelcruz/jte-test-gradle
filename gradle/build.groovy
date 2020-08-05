@@ -1,3 +1,3 @@
 void call(){
-    println "!!! --- GRADLE BUILD AT SOURCE!!! --- ""
+    println "!!! --- GRADLE BUILD AT SOURCE!!! --- "
 }
