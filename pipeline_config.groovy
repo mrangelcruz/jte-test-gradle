@@ -1,9 +1,13 @@
-pipeline_template = 'java'
-skip_default_checkout = true
-
 libraries{
     gradle
-    //approve{
-    //    branch_conditional = "master"
-    //}
+}
+application_environment{
+    merge =  true
+	dev{
+		ip_addresses = ["0.0.0.1","0.0.0.2"]
+	}
+	prod{
+		long_name = "Production"
+		ip_addresses = ["0.0.1.1", "0.0.1.2", "0.0.1.3"]
+	}
 }
